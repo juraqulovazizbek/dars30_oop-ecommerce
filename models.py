@@ -3,34 +3,35 @@ from typing import List
 class Car:
 
     def __init__(self , name: str , price: float , stock: int):
-        self.name = name
+        self.name = name 
         self.price = price
         self.stock = stock
     
     def reduce_stock(self , quantity: int)-> None:
         if quantity <= self.stock:
-            self.stock -= quantity
+            self.stock -=quantity
         else:
-            print(f"{self.name} MY CAR SHOP da bu rusum yetarlicha yo'q. MY CAR SHOP: {self.stock} ta bor!")
+            print(F"{self.name} MY CAR SHOP da bu rusum yetarlicha yo'q. MY CAR SHOP: {self.stock}ta bor!")
 
-
+        
 class Customer:
-
     def __init__(self , name:str , balance: float) -> None:
-        self.name = name
-        self.balance = balance
+
+        self.name = name 
+        self.balance = balance 
 
     def deduct_balance(self , amount: float)-> None:
         if amount <= self.balance:
             self.balance -= amount
         else:
-            print(f"Balance da yetarlicha pul mavjud emas. Mablag': {self.balance}")
-
-
+            print(f"balance da yetarlicha pul mavjud emas. Mablag': {self.balance}")
+        
+            
 class Item:
 
     def __init__(self, car: Car, quantity: int) -> None:
-        self.car = car               # oldingi xato: self.product
+        self.car = car
+        self.quantity = quantity
         self.quantity = quantity
 
         car.reduce_stock(quantity)
@@ -55,16 +56,15 @@ class Order:
     def complete_order(self) -> None:
         self.customer.deduct_balance(self.calculate_total())
 
-
 class Shop:
     
     def __init__(self , name: str):
-        self.name = name
+        self.name = name 
         self.cars: list[Car] = []
         self.customers: list[Customer] = []
 
     def add_car(self, car: Car) -> None:
         self.cars.append(car)
     
-    def add_customer(self, customer: Customer) -> None:
+    def add_customer( self, customer: Customer) -> None:
         self.customers.append(customer)
