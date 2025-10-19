@@ -1,40 +1,39 @@
 from typing import List
 
+class Car:
 
-class Product:
-    
-    def __init__(self, name: str, price: float, stock: int) -> None:
-        self.name  = name
+    def __init__(self , name: str , price: float , stock: int):
+        self.name = name
         self.price = price
         self.stock = stock
-
-    def reduce_stock(self, quantity: int) -> None:
+    
+    def reduce_stock(self , quantity: int)-> None:
         if quantity <= self.stock:
             self.stock -= quantity
         else:
-            print(f"{self.name} bazada yetarlicha mavjud emas.")
+            print(f"{self.name} MY CAR SHOP da bu rusum yetarlicha yo'q. MY CAR SHOP: {self.stock} ta bor!")
 
 
 class Customer:
-    
-    def __init__(self, name: str, balance: float) -> None:
-        self.name    = name
+
+    def __init__(self , name:str , balance: float) -> None:
+        self.name = name
         self.balance = balance
 
-    def deduct_balance(self, amount: float) -> None:
+    def deduct_balance(self , amount: float)-> None:
         if amount <= self.balance:
             self.balance -= amount
         else:
-            print(f"Balance da mablag yetarli emas: {self.balance}")
+            print(f"Balance da yetarlicha pul mavjud emas. Mablag': {self.balance}")
 
 
 class Item:
 
-    def __init__(self, product: Product, quantity: int) -> None:
-        self.product  = product
+    def __init__(self, car: Car, quantity: int) -> None:
+        self.car = car               # oldingi xato: self.product
         self.quantity = quantity
 
-        product.reduce_stock(quantity)
+        car.reduce_stock(quantity)
 
 
 class Order:
@@ -43,14 +42,14 @@ class Order:
         self.customer = customer
         self.items: List[Item] = []
 
-    def add_item(self, product: Product, quantity: int) -> None:
-        item = Item(product, quantity)
+    def add_item(self, car: Car, quantity: int) -> None:
+        item = Item(car, quantity)
         self.items.append(item)
 
     def calculate_total(self) -> float:
         total = 0
         for item in self.items:
-            total += item.product.price * item.quantity
+            total += item.car.price * item.quantity
         return total
     
     def complete_order(self) -> None:
@@ -59,14 +58,13 @@ class Order:
 
 class Shop:
     
-    def __init__(self, name: str):
-        self.name                      = name
-        self.products: List[Product]   = []
-        self.customers: List[Customer] = []
+    def __init__(self , name: str):
+        self.name = name
+        self.cars: list[Car] = []
+        self.customers: list[Customer] = []
 
-    def add_product(self, product: Product) -> None:
-        self.products.append(product)
-
+    def add_car(self, car: Car) -> None:
+        self.cars.append(car)
+    
     def add_customer(self, customer: Customer) -> None:
         self.customers.append(customer)
-

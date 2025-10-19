@@ -1,25 +1,24 @@
-from models import Product, Customer, Order, Shop
+from models import Car , Customer, Order, Shop
 
-# Do‘kon yaratish
-shop = Shop("TechStore")
+#do'kon yaratamiz "my car shop"
 
-# Mahsulotlar
-laptop = Product("Laptop", 1200, 5)
-mouse = Product("Mouse", 25, 30)
-shop.add_product(laptop)
-shop.add_product(mouse)
+shop = Shop("My Car Shop")
 
-# Xaridor
-user = Customer("Ali", 2000)
-shop.add_customer(user)
+bmw_m3_g80 = Car("bmw_m3_g80", 120_000_000, 5)
+bmw_m5_f90 = Car("bmw_m5_f90", 150_000_000, 3)
+bmw_x7 = Car("bmw_x7", 200_000_000, 2)
 
-# Buyurtma yaratish
+#oluvchilar yaratamiz 
+
+user = Customer("inomarka_haydam", 300_000_000)
+
+#buyurtma yaratamiz
+
 order = Order(user)
-order.add_item(laptop, 1)
-order.add_item(mouse, 2)
+order.add_item(bmw_m3_g80, 1)
+order.add_item(bmw_m5_f90, 1)
+order.add_item(bmw_x7, 1)
 
-# Umumiy summa
-print("Total:", order.calculate_total())
+#umumiy narxni hisoblaymiz olingan mashinalar narxi 
+print("Umumiy narx: ", order.calculate_total())
 
-# Buyurtmani yakunlash
-order.complete_order()
